@@ -54,7 +54,7 @@ Updated for ONA 2024 in Atlanta
       - Where to put the secrets
       - Setting up Slack
 
-## Monitoring Real Time Warnings
+## Monitoring Warnings in Real Time
 
 ### The Weather Service API
 
@@ -68,31 +68,41 @@ Updated for ONA 2024 in Atlanta
   - Limit. `&limit=500`
 - But what about monitoring it?
 
-### The Bot Tooling We Use
-
-- Github Actions
-- Makefiles
-- Slack
-
-### Setup for this class
+### Let's play with some code!
 
 1. Sign into Github (or quickly make an account if you haven't already)
-1. Go to **[github.com/jkeefe/nicar2024-weather](git@github.com:jkeefe/nicar2024-weather.git)**
+1. Go to my Github page **[github.com/jkeefe/](https://github.com/jkeefe)**
+1. Click on the pinned repository at the top: [weather-newsrooms-ona24](https://github.com/jkeefe/weather-newsrooms-ona24)
 1. Chose the "Fork" button
 1. Note that the **owner** is now **you**. Click "Create fork"
 1. After a minute, you will have a new screen. Note that your name is up at the top! This is your copy. You can use this now or just watch and return to it later. (If you see **jkeefe** instead of your name, you're on the wrong screen. Go find your copy in your github account.)
 1. Now click the green "<> Code" button and, after you do, the "Codespaces" tab under it.
 1. Click "Create Codespace on Main"
 
-#### Take a look around!
+### Take a look around!
 
 - File list on the left side
-- Coding happens in the big window
-- There's a terminal window at the bottom.
+- Editing happens in the big window
+- There's a terminal window at the bottom to run things
+
+### Weather Warnings Code
+
+- Look at the Makefile in that folder
+- Open the Terminal
+- Type `npm install`
+- `make download`
+
+Don't do `make warnings` yet. Let's look at what this does!
+
+- okay, when John says so, do `make warnings`
+
+## More details about Codespaces
 
 #### How to save your work
 
-This is an ephemperal instance! The instance will live in your account for a few days, but unless you take active steps, it will disappear. Which is good! You need to actively save your code back to the repo to make sure you have it.
+This is an ephemperal instance! The instance will live in your account for a few days, but unless you take active steps, it will disappear. Which is good!
+
+But if you make changes to the code you want to save, you need to proactively save your code back to the repository to make sure you have it. Here's how:
 
 - Save all of the files you want to commit to your code
 - Maybe even close them to make sure!
@@ -102,47 +112,28 @@ This is an ephemperal instance! The instance will live in your account for a few
 - Pick "Commit & Sync"
 - You will be warned that there are no changes staged, and do you want to stage and all of your changes. Say "Yes"
 
-#### When you're done for the day
+#### Closing up when you're done for the day
 
-Running computers cost money. You get 60 hours free every month and 15 gigabytes of storage. But let's not waste those free hours.
+Running computers cost money. You get 60 hours free Codespace time every month and 15 gigabytes of storage. The Codespace will shut down after you haven't used it for a while, but but let's not waste those free minutes!
 
-- Go to (github.com/codespaces)[https://github.com/codespaces]
+- While logged into Github, go to (github.com/codespaces)[https://github.com/codespaces]
 - Pick the three dots next to the Active codespace.
 - Chose "Stop codespace"
 - If you forget, don't worry: It'll shut down automatically after 30 minutes. But why waste that?
 - Go back to the main tab, and you'll see it's gone
 - Can restart
 
-### Weather Warnings Code
+## Making a Warnings Bot
 
-- Open the `warnings` folder
-- Look at the Makefile in that folder
-- Open the Terminal
-- `cd warnings`
-- `make clean`
-- `make download`
+It'd be great to get notified when there are new warnings! One way to pull that off is to send new warnings to Slack. Here's how to do that ...
 
-Don't do `make warnings` yet. Let's look at what this does!
+### Setting up Slack to receive real-time warnings
 
-- okay, when John says so, do `make warnings`
+Slack is a messaging platform used by a lot of newsrooms, and it's surprisingly good at showing messages from robots. Also? This will work in a _free Slack workspace_. So even if you don't have full access to your organization's Slack system, you can do this all on your own if you want; just make a new workspace at `slack.com`.
 
-Try each of these and then run `make warnings` again.
-
-- **Add a full description:** uncomment line 87 (delete the `//`)
-- **Add a map link, using geojson.io!** uncomment lines 89-92
-- **Ignore warnings we've seen before:** uncomment the others ...
-  - line 57
-  - lines 72-79
-  - line 94
-  - line 98
-
-### Making it work for Slack
-
-You need to make a Slack app (it's easier than that sounds) and get a "bot token."
+You'll need to make a Slack _app_ (it's easier than that sounds) and get a "bot token."
 
 The only catch is that depending on your existing Slack setup, you may need to get an administrator to approve the creation of an app. The good thing is that you are only requesting the ability to `chat:write`, which is simply posting into a channel.
-
-Also? This works in a _free Slack workspace_. So you can do this all on your own if you want; just make a new workspace at `slack.com`.
 
 OK, here's what to do:
 
@@ -163,7 +154,7 @@ export SLACK_TOKEN=xoxb-123-456-abc-zyz
 
 Now try `make slack`!
 
-### Running as a Github Action
+### Running your code as a Github Action
 
 Github actions allow you to run your code in the cloud _really easily_.
 

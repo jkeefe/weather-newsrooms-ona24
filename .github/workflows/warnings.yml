@@ -22,29 +22,29 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
       - name: Cache node_modules
         uses: actions/cache@v3
         id: npm-cache
         with:
-          path: '**/warnings/node_modules'
+          path: "**/warnings/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Install packages if there's no cache
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: |-
           cd ./"$GITHUB_WORKFLOW"
-          npm ci 
+          npm ci
 
       # - name: Set up Python 3.10
       #   uses: actions/setup-python@v4
       #   with:
-      #     python-version: '3.10' 
+      #     python-version: '3.10'
 
       - name: Start the data processing using make
         env:
-          BOT_NAME: ${{ github.workflow }}                # <-- This makes you bot name available to scripts
+          BOT_NAME: ${{ github.workflow }} # <-- This makes you bot name available to scripts
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           # MY_API_KEY: ${{ secrets.MY_API_KEY }}         # <-- Can make available additional repository secrets here
         uses: nick-fields/retry@v2
@@ -53,7 +53,7 @@ jobs:
           retry_on: error
           timeout_minutes: 5
           retry_wait_seconds: 30
-          command: cd warnings && make all
+          command: make all
 
       - name: Commit and push to main branch
         run: |-
@@ -63,7 +63,3 @@ jobs:
           timestamp=$(date -u)
           git commit -m "Updated at: ${timestamp}" || exit 0
           git push origin main
-
-
-
-
