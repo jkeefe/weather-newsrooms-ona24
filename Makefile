@@ -1,4 +1,4 @@
-SOURCE_URL:="https://api.weather.gov/alerts/active?area=MD,DC,VA&status=actual&limit=500"
+SOURCE_URL:="https://api.weather.gov/alerts/active?status=actual&area=GA"
 # SOURCE_URL:="https://s3.amazonaws.com/media.johnkeefe.net/data/example_warnings.json"
 
 all: clean download warnings

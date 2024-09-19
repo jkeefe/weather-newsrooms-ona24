@@ -2,7 +2,7 @@
 
 Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 
-## What's about to come my way?
+## What's ahead?
 
 - [Heat Risk](https://www.wpc.ncep.noaa.gov/heatrisk/)
 - [Excessive Rain](https://www.wpc.ncep.noaa.gov/qpf/excessive_rainfall_outlook_ero.php)
@@ -12,7 +12,7 @@ Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 - The forecast for [free](weather.gov)!
 - [Your Places: Extreme Weather](https://www.nytimes.com/interactive/2023/us/extreme-weather-forecast-maps.html)
 
-## What happened sometime in the past?
+## What happened?
 
 ### Yesterday
 
@@ -31,18 +31,18 @@ Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 
 **Method 1: NECI climate data**
 
-- Go to https://www.ncei.noaa.gov/access/search/data-search/daily-summaries
+- Go to https://www.ncei.noaa.gov/access/search/data-search/daily-summaries (or [bit.ly/weather-records-1](https://bit.ly/weather-records-1))
 - Type in Atlanta
-- Choose "Preview" on the Atlanta Hartsfield Airport
+- Choose "Preview" on the Atlanta Hartsfield Airport line
 - Pick a year month
 - View the PDF
 - Now download all the data
 - But what are these columns?
 - See the descriptions here: https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00861/html
 
-**Method 1: Thredex data**
+**Method 2: Thredex data**
 
-- Go to https://builder.rcc-acis.org/
+- Go to https://builder.rcc-acis.org/ (or [bit.ly/weather-records-2](https://bit.ly/weather-records-2))
 - Enter ATL
 - por (period of record)
 - por
@@ -58,7 +58,7 @@ Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 - Record highs: `[{"name":"maxt","interval":[0,0,1],"duration":1,"smry":{"add":"date","reduce":"max"},"smry_only":"1","groupby":"year"}]`
 - Documentation: https://www.rcc-acis.org/docs_webservices.html#title8
 
-## What bad things are happening _right now?_
+## What's happening _right now?_
 
 ### The Weather Service API
 
@@ -67,9 +67,8 @@ Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 - Building a URL:
   - Base endpoint: `https://api.weather.gov/alerts/active`
   - We want actual warnings, not tests: `?status=actual`
-  - Area? Let's say Maryland, Virginia and D.C. You can get fancier here, but states are easy: `&area=MD,DC,VA`
-  - Code. This is the warning type. Tornado warning, tornado watch, etc. List is [here](https://www.weather.gov/nwr/eventcodes).
-  - Limit. `&limit=500`
+  - Area? Let's say Georgia. You can get fancier here, but states are easy: `&area=GA`
+  - Code. This is the warning type. Tornado warning, tornado watch, etc. List is [here](https://www.weather.gov/nwr/eventcodes). Could do `&code=TOR`, but let's just leave this off.
 - But what about monitoring it?
 
 ### Let's play with some code!
@@ -92,7 +91,7 @@ Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 ### Weather Warnings Code
 
 - Look at the Makefile in that folder
-- Open the Terminal
+- Open the Terminal, if it's not open already
 - Type `npm install`
 - Type `make download`
 
@@ -135,7 +134,7 @@ Next we need the Slack _Channel_ id.
 - In that channel, invite the bot to the channel! For example, type: `/invite @warnings_bot` (using whatever you called your bot)
 - Next, get the channel ID, which you can find by clicking on the channel name at the very top of the screen.
 - The ID is at the very bottom of the pop-up window, and you can click the little copy icon to copy it.
-<img width="624" alt="Screenshot 2024-09-19 at 1 31 24 PM" src="https://github.com/user-attachments/assets/a6fbb5c6-844d-4ff0-b3da-6cdf90a5c6c5">
+  <img width="624" alt="Screenshot 2024-09-19 at 1 31 24 PM" src="https://github.com/user-attachments/assets/a6fbb5c6-844d-4ff0-b3da-6cdf90a5c6c5">
 
 - In the terminal type:
 
