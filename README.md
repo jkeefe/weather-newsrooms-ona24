@@ -90,38 +90,11 @@ Updated for ONA 2024 in Atlanta
 - Look at the Makefile in that folder
 - Open the Terminal
 - Type `npm install`
-- `make download`
+- Type `make download`
 
 Don't do `make warnings` yet. Let's look at what this does!
 
 - okay, when John says so, do `make warnings`
-
-## More details about Codespaces
-
-#### How to save your work
-
-This is an ephemperal instance! The instance will live in your account for a few days, but unless you take active steps, it will disappear. Which is good!
-
-But if you make changes to the code you want to save, you need to proactively save your code back to the repository to make sure you have it. Here's how:
-
-- Save all of the files you want to commit to your code
-- Maybe even close them to make sure!
-- Click the github source-control button
-- Enter a commit message, like "edited readme"
-- Use the blue dropdown arrow
-- Pick "Commit & Sync"
-- You will be warned that there are no changes staged, and do you want to stage and all of your changes. Say "Yes"
-
-#### Closing up when you're done for the day
-
-Running computers cost money. You get 60 hours free Codespace time every month and 15 gigabytes of storage. The Codespace will shut down after you haven't used it for a while, but but let's not waste those free minutes!
-
-- While logged into Github, go to (github.com/codespaces)[https://github.com/codespaces]
-- Pick the three dots next to the Active codespace.
-- Chose "Stop codespace"
-- If you forget, don't worry: It'll shut down automatically after 30 minutes. But why waste that?
-- Go back to the main tab, and you'll see it's gone
-- Can restart
 
 ## Making a Warnings Bot
 
@@ -152,11 +125,31 @@ For example:
 export SLACK_TOKEN=xoxb-123-456-abc-zyz
 ```
 
-Now try `make slack`!
+Next we need the Slack _Channel_ id.
+
+- Go to your Slack workspace and pick (or make) a channel where you want your warnings to appear (I called mine **#alerts**.)
+- In that channel, invite the bot to the channel! For example, type: `/invite @warnings_bot` (using whatever you called your bot)
+- Next, get the channel ID, which you can find by clicking on the channel name at the very top of the screen.
+- The ID is at the very bottom of the pop-up window, and you can click the little copy icon to copy it.
+- In the terminal type:
+
+```
+export SLACK_CHANNEL=[channel ID]
+```
+
+For example:
+
+```
+export SLACK_CHANNEL=C123ABC45
+```
+
+- Now type `make slack`!
+
+You should see something like this appear:
 
 ### Running your code as a Github Action
 
-Github actions allow you to run your code in the cloud _really easily_.
+Github actions allow you to run your code in the cloud.
 
 The driver of any github action is a yaml file in the `.github/workflows` directory of a repo, [like this one](.github/workflows/warnings.yml).
 
@@ -170,7 +163,7 @@ In short, here's what our `warnings` Github Action does:
 - [Runs make all](https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L56) just like we did in the terminal
 - [Commits](https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L58C1-L65C31) the new data to the repo (saving our `seen.json` for next run)
 
-To get this working, you need to do two key things:
+To get this working, you need to do a few key things:
 
 **Let the Action write back to the repo**
 
@@ -189,8 +182,15 @@ To get this working, you need to do two key things:
 
 - Enter `SLACK_TOKEN` in the top box
 - Paste your "Bot User OAuth Token" which always starts `oxob-` into the larger box
+- Click the "Add Secret" button
 
 <img width="912" alt="Screenshot 2024-03-06 at 9 44 53 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/99a855c4-46d7-482e-ad55-5123920e0a0f">
+
+**Let the Action know your Slack Channel**
+
+- Again, you want a New Repository Secret
+- This time, enter `SLACK_CHANNEL` in the top box
+- Paste your channel ID in the bottom box.
 
 Then ... run your action:
 
@@ -198,4 +198,50 @@ Then ... run your action:
   <img width="445" alt="Screenshot 2024-03-06 at 9 40 45 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/6db8365f-30be-4a49-9c31-5b3fa28e2068">
   <img width="589" alt="Screenshot 2024-03-06 at 9 40 54 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/5b535489-b742-43d5-8e8f-ea57a2533ece">
 
-- Click the "warnings" label next to the yellow dot to watch it in action
+- Click the "warnings" label next to the yellow dot to watch it in action.
+
+#### Run the action every 10 minutes
+
+To make the bot run automatically, find the `warnings.yml` file in the `.github/workflows` folder.
+
+Then uncomment (so remove the `#` and a single space) from lines 4 and 5. The file should now look like this at the top (the indentations matter and should be exact):
+
+```
+name: warnings
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # <-- Set your cron here (UTC). Uses github which can be ~2-10 mins late.
+  workflow_dispatch:
+```
+
+#### Save your work!
+
+You need to save your work back to your repository for it to keep after you close your browser today. Read on for how to do that.
+
+## More details about Codespaces
+
+#### How to save your work
+
+This is an ephemperal instance! The instance will live in your account for a few days, but unless you take active steps, it will disappear. Which is good!
+
+But if you make changes to the code you want to save, you need to proactively save your code back to the repository to make sure you have it. Here's how:
+
+- Save all of the files you want to commit to your code
+- Maybe even close them to make sure!
+- Click the github source-control button
+- Enter a commit message, like "edited readme"
+- Use the blue dropdown arrow
+- Pick "Commit & Sync"
+- You will be warned that there are no changes staged, and do you want to stage and all of your changes. Say "Yes"
+
+#### Closing up when you're done for the day
+
+Running computers cost money. You get 60 hours free Codespace time every month and 15 gigabytes of storage. The Codespace will shut down after you haven't used it for a while, but but let's not waste those free minutes!
+
+- While logged into Github, go to (github.com/codespaces)[https://github.com/codespaces]
+- Pick the three dots next to the Active codespace.
+- Chose "Stop codespace"
+- If you forget, don't worry: It'll shut down automatically after 30 minutes. But why waste that?
+- Go back to the main tab, and you'll see it's gone
+- Can restart
