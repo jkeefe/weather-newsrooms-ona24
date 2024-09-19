@@ -131,6 +131,8 @@ Next we need the Slack _Channel_ id.
 - In that channel, invite the bot to the channel! For example, type: `/invite @warnings_bot` (using whatever you called your bot)
 - Next, get the channel ID, which you can find by clicking on the channel name at the very top of the screen.
 - The ID is at the very bottom of the pop-up window, and you can click the little copy icon to copy it.
+<img width="624" alt="Screenshot 2024-09-19 at 1 31 24 PM" src="https://github.com/user-attachments/assets/a6fbb5c6-844d-4ff0-b3da-6cdf90a5c6c5">
+
 - In the terminal type:
 
 ```
@@ -146,6 +148,12 @@ export SLACK_CHANNEL=C123ABC45
 - Now type `make slack`!
 
 You should see something like this appear:
+
+<img width="706" alt="Screenshot 2024-09-19 at 1 30 51 PM" src="https://github.com/user-attachments/assets/3b2d6fbc-bdc9-4867-8092-01c950e9687d">
+
+If you click on the "reply" link, you'll see that the bot has included the details as a thread!
+
+<img width="578" alt="Screenshot 2024-09-19 at 1 31 02 PM" src="https://github.com/user-attachments/assets/7548734f-5d8b-4308-b748-ba536c4555ea">
 
 ### Running your code as a Github Action
 
