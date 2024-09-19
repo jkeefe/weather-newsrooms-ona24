@@ -2,6 +2,12 @@
 
 Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 
+Join me ...
+
+- Sign into Github (or quickly make an account if you haven't already): [github.com](https://github.com)
+- Go to my Github page **[github.com/jkeefe/](https://github.com/jkeefe)**
+- Click on the pinned repository at the top: [weather-newsrooms-ona24](https://github.com/jkeefe/weather-newsrooms-ona24)
+
 ## What's ahead?
 
 - [Heat Risk](https://www.wpc.ncep.noaa.gov/heatrisk/)
@@ -73,9 +79,8 @@ Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 
 ### Let's play with some code!
 
-1. Sign into Github (or quickly make an account if you haven't already)
-1. Go to my Github page **[github.com/jkeefe/](https://github.com/jkeefe)**
-1. Click on the pinned repository at the top: [weather-newsrooms-ona24](https://github.com/jkeefe/weather-newsrooms-ona24)
+1. Sign into Github (or quickly make an account if you haven't already): [github.com](https://github.com)
+1. Return to this page or scroll to the top of this page!
 1. Chose the "Fork" button
 1. Note that the **owner** is now **you**. Click "Create fork"
 1. After a minute, you will have a new screen. Note that your name is up at the top! This is your copy. You can use this now or just watch and return to it later. (If you see **jkeefe** instead of your name, you're on the wrong screen. Go find your copy in your github account.)
