@@ -1,60 +1,64 @@
 # weather-newsrooms
 
-Updated for ONA 2024 in Atlanta
+Updated for ONA 2024 in Atlanta ... Using Data to Help Tell Weather Stories
 
-## Overview
+## What's about to come my way?
 
-- The coming days
-  - [Heat Risk](https://www.wpc.ncep.noaa.gov/heatrisk/)
-  - [Excessive Rain](https://www.wpc.ncep.noaa.gov/qpf/excessive_rainfall_outlook_ero.php)
-  - [Winter Storm Severity Index](https://www.wpc.ncep.noaa.gov/wwd/wssi/wssi.php)
-  - [Severe storm risks](https://www.spc.noaa.gov/products/outlook/)
-  - [Records](https://www.wpc.ncep.noaa.gov/exper/ndfd/ndfd.html)
-  - The forecast for [free](weather.gov)!
-  - [Your Places: Extreme Weather](https://www.nytimes.com/interactive/2023/us/extreme-weather-forecast-maps.html)
-- Finding and using historical data
+- [Heat Risk](https://www.wpc.ncep.noaa.gov/heatrisk/)
+- [Excessive Rain](https://www.wpc.ncep.noaa.gov/qpf/excessive_rainfall_outlook_ero.php)
+- [Winter Storm Severity Index](https://www.wpc.ncep.noaa.gov/wwd/wssi/wssi.php)
+- [Severe storm risks](https://www.spc.noaa.gov/products/outlook/)
+- [Records](https://www.wpc.ncep.noaa.gov/exper/ndfd/ndfd.html)
+- The forecast for [free](weather.gov)!
+- [Your Places: Extreme Weather](https://www.nytimes.com/interactive/2023/us/extreme-weather-forecast-maps.html)
 
-  - Yesterday
-    - Weather forecast office = WFO
-    - Google "Atlanta WFO"
-    - Click on "Cllimate and Past Weather"
-    - Click on "Observed Weather"
-    - "Daily Climate Report"
-  - Earlier this month
-    - NOW Data tab
-    - "Daily Data for a month"
-  - A while ago
-    - Go to https://www.ncei.noaa.gov/access/search/data-search/daily-summaries
-    - Type in Atlanta
-    - Choose "Preview" on the Atlanta Hartsfield Airport
-    - Pick a year month
-    - View the PDF
-    - Now download all the data
-    - But what are these columns?
-    - See the descriptions here: https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00861/html
-  - Over time, approach 2
-    - Go to https://builder.rcc-acis.org/
-    - Enter ATL
-    - por (period of record)
-    - por
-    - mint (minimum temperature)
-    - can convert to csv: https://www.convertcsv.com/json-to-csv.htm
-    - can throw into datawrapper
-    - Can see trends!
-  - Records???
+## What happened sometime in the past?
 
-    - Same, but elements are:
-    - Record lows: [{"name":"mint","interval":[0,0,1],"duration":1,"smry":{"add":"date","reduce":"min"},"smry_only":"1","groupby":"year"}]
-    - Record highs: [{"name":"maxt","interval":[0,0,1],"duration":1,"smry":{"add":"date","reduce":"max"},"smry_only":"1","groupby":"year"}]
-    - Documentation: https://www.rcc-acis.org/docs_webservices.html#title8
+### Yesterday
 
-  - Monitoring real-time warnings
-    - Recipe for Slack alerts
-      - Variables in the Make file for location and type
-      - Where to put the secrets
-      - Setting up Slack
+- Weather forecast office = WFO
+- Google "Atlanta WFO"
+- Click on "Cllimate and Past Weather"
+- Click on "Observed Weather"
+- "Daily Climate Report"
 
-## Monitoring Warnings in Real Time
+### Earlier this month
+
+- NOW Data tab
+- "Daily Data for a month"
+
+### In the historical record
+
+**Method 1: NECI climate data**
+
+- Go to https://www.ncei.noaa.gov/access/search/data-search/daily-summaries
+- Type in Atlanta
+- Choose "Preview" on the Atlanta Hartsfield Airport
+- Pick a year month
+- View the PDF
+- Now download all the data
+- But what are these columns?
+- See the descriptions here: https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00861/html
+
+**Method 1: Thredex data**
+
+- Go to https://builder.rcc-acis.org/
+- Enter ATL
+- por (period of record)
+- por
+- mint (minimum temperature)
+- can convert to csv: https://www.convertcsv.com/json-to-csv.htm
+- can throw into datawrapper
+- Can see trends!
+
+**Record highs and lows**
+
+- Same as the Method 2 above, but ethe lements are:
+- Record lows: `[{"name":"mint","interval":[0,0,1],"duration":1,"smry":{"add":"date","reduce":"min"},"smry_only":"1","groupby":"year"}]`
+- Record highs: `[{"name":"maxt","interval":[0,0,1],"duration":1,"smry":{"add":"date","reduce":"max"},"smry_only":"1","groupby":"year"}]`
+- Documentation: https://www.rcc-acis.org/docs_webservices.html#title8
+
+## What bad things are happening _right now?_
 
 ### The Weather Service API
 
