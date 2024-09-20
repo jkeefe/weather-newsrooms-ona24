@@ -15,7 +15,7 @@ Join me ...
 - [Winter Storm Severity Index](https://www.wpc.ncep.noaa.gov/wwd/wssi/wssi.php)
 - [Severe storm risks](https://www.spc.noaa.gov/products/outlook/)
 - [Records](https://www.wpc.ncep.noaa.gov/exper/ndfd/ndfd.html)
-- The forecast for [free](weather.gov)!
+- The forecast for [free](https://weather.gov)!
 - [Your Places: Extreme Weather](https://www.nytimes.com/interactive/2023/us/extreme-weather-forecast-maps.html)
 
 ## What happened?
